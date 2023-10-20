@@ -1,3 +1,5 @@
+import http
+
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List
@@ -34,5 +36,10 @@ async def update_item(item_id: int, item: Item):
 async def delete_item(item_id: int):
     del items[item_id]
     return {"message": "Item deleted"}
+
+
+@app.get("/healthz", status_code=200)
+async def healthz():
+    return 200
     
     
